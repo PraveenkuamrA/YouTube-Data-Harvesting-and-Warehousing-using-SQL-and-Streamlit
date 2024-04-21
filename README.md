@@ -17,6 +17,10 @@ Install Streamlit
 ```
 pip install streamlit
 ```
+Install pandas
+```
+pip install pandas
+```
 
 ```
 import streamlit as st
