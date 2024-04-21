@@ -39,47 +39,10 @@ mydb = mysql.connector.connect(
 mycursor = mydb.cursor(buffered=True)
 ```
 Connection with youtube api server with your api key
-```
-api_service_name = "youtube"
-api_version = "v3"
-api_key='AIzaSyB6cmqZxAgsDC4mCgfpyL6IChq_AOzvU-c'
-youtube = googleapiclient.discovery.build(api_service_name, api_version, developerKey=api_key)
-```
+
+https://github.com/PraveenkuamrA/YouTube-Data-Harvesting-and-Warehousing-using-SQL-and-Streamlit/blob/3af67bd3bba565cf0bfd55e7222b54a8548c915b/YouTube%20Data%20Harvesting%20and%20Warehousing%20using%20SQL%20and%20Streamlit.py#L7-L12
+
 Fetch channel info 
-```
-def channel_info(channel_id): 
-    request = youtube.channels().list(
-        part="snippet,contentDetails,statistics",
-        id=channel_id)
-    response = request.execute()
 
-    if 'items' not in response or len(response['items']) == 0:
-        st.error("No channel found with the provided ID.")
-        return
-
-    channel_data = response['items'][0]
-    data = [{
-        'channel_name': channel_data['snippet']['title'],
-        'channel_des': channel_data['snippet']['description'],
-        'channel_uploadId': channel_data['contentDetails']['relatedPlaylists']['uploads'],
-        'channel_sub': channel_data['statistics']['subscriberCount'],
-        'channel_vedioCount': channel_data['statistics']['videoCount'],
-        'channel_viewCount': channel_data['statistics']['viewCount']
-    }]
-    st.write(pd.DataFrame(data))
-    
-    # here going to insert data into my sql channel table
-
-    query = '''INSERT INTO project.channel (channel_name,channel_des,channel_uploadId,channel_sub,channel_vedioCount,
-            channel_viewCount) VALUES (%s, %s, %s,%s,%s,%s)'''
-    
-    mycursor.execute(query,(data[0]['channel_name'],
-                            data[0]['channel_des'],
-                            data[0]['channel_uploadId'],
-                            data[0]['channel_sub'],
-                            data[0]['channel_vedioCount'],
-                            data[0]['channel_viewCount']))
-    mydb.commit()
-```
 https://github.com/PraveenkuamrA/YouTube-Data-Harvesting-and-Warehousing-using-SQL-and-Streamlit/blob/3af67bd3bba565cf0bfd55e7222b54a8548c915b/YouTube%20Data%20Harvesting%20and%20Warehousing%20using%20SQL%20and%20Streamlit.py#L20-L50
 
