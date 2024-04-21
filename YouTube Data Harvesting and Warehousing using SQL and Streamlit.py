@@ -26,7 +26,8 @@ def channel_info(channel_id):
     if 'items' not in response or len(response['items']) == 0:
         st.error("No channel found with the provided ID.")
         return
-
+    # fetch details from response
+ 
     channel_data = response['items'][0]
     data = [{
         'channel_name': channel_data['snippet']['title'],
@@ -36,8 +37,11 @@ def channel_info(channel_id):
         'channel_vedioCount': channel_data['statistics']['videoCount'],
         'channel_viewCount': channel_data['statistics']['viewCount']
     }]
+    # st.write used display our data in streamlit application
     st.write(pd.DataFrame(data))
 
+   # insert data into channel table 
+   # string formating used here 
     query = '''INSERT INTO project.channel (channel_name,channel_des,channel_uploadId,channel_sub,channel_vedioCount,
             channel_viewCount) VALUES (%s, %s, %s,%s,%s,%s)'''
     
@@ -63,17 +67,21 @@ def playlist_details(channel_id):
             return
  
         channel = response['items'][0]
+        # here getting channel title ana playlist ID
         channel_name=channel['snippet']['title']
         channel_ids=channel['contentDetails']['relatedPlaylists']['uploads']
         request = youtube.playlists().list(part='snippet,contentDetails',channelId=channel_id,maxResults=50,pageToken=next_page_token)
         response1 = request.execute()
-
+     
+        # max result is 50 data only remaining datas are stored next page and next page will access by nextPageToken
+     
         for item in response1['items']: 
             data=[{
                 'playList_Id' : item['id'],
                 'playList_Title' : item['snippet']['title'], 
                 'vedio_count' : item['contentDetails']['itemCount']
             }]
+            # inserting data into playlist table 
             query = '''INSERT INTO project.playlist (channel_name,channel_ids,playList_Id,playList_Title,
                         vedio_count) VALUES (%s, %s, %s,%s,%s)'''
     
@@ -84,9 +92,10 @@ def playlist_details(channel_id):
                                     data[0]['vedio_count']))
         
             play_info.append(*(data))
-        
+        # here chech next page token if not available means then it will break our while loop
         if 'nextPageToken' in response:
                 next_page_token = response['nextPageToken']
+                
         else:
             break
     mydb.commit()
@@ -104,7 +113,7 @@ def vedioIds_info(channel_id):
         return
     
     channeldata=response['items'][0]
-
+    # fetching channel name and playlist ID 
     PLAYLIST_ID=channeldata['contentDetails']['relatedPlaylists']['uploads']
     channel_name=channeldata['snippet']['title']
 
@@ -118,7 +127,7 @@ def vedioIds_info(channel_id):
             pageToken=next_page_token)
         
         response1 = request.execute()
-
+        # 
         for i in range(len(response1['items'])):
             video_ids.append(response1['items'][i]['snippet']['resourceId']['videoId'])
         if 'nextPageToken' in response1: 
@@ -134,6 +143,8 @@ def vedios_info(video_ids,channel_name):
     vedio_data=[]
 
     def time_str_to_seconds(t):
+        # here converting our vedio duration into seconds
+     
         def time_duration(t):
             a = pd.Timedelta(t)
             b = str(a).split()[-1]
@@ -167,7 +178,7 @@ def vedios_info(video_ids,channel_name):
                     if 'commentCount' in response['items'][0]['statistics'] else '0' ,
                 'vedio_des' : response['items'][0]['snippet']['description']
             }]
-        
+        # inserting data into vedio table 
         query='''insert into project.vedio(channel_name,vedio_ID,vedio_title,vedio_view,vedio_date,
                 vedio_duriation,vedio_likes,vedio_comment,vedio_des) values(%s,%s,%s,%s,%s,%s,%s,%s,%s)'''
         
@@ -192,7 +203,10 @@ def comment_info(video_ids,channel_name):
     for item in video_ids:
         j=0
         next_page_token=None
+        # sometimes comments will be off 
         try:
+            # here j<=1 condition uesd for loop need to run only two times then only fecth first 100 comments 
+            # after 2 time loop will be break and result count should be less than or equal to 100 
             while(j<=1):
                 request = youtube.commentThreads().list(
                     part='snippet',
@@ -209,6 +223,7 @@ def comment_info(video_ids,channel_name):
                         'comment_date' : response['items'][i]['snippet']['topLevelComment']['snippet']['publishedAt'].split('T')[0],
                         'comment_vedioID' : response['items'][i]['snippet']['topLevelComment']['snippet']['videoId']
                     }]
+                    # inserting data into comments table
                     query=('''insert into project.comments(channel_Name,vedio_comment,comment_author,comment_date,
                         comment_vedioID) values(%s,%s,%s,%s,%s)''')   
                     mycursor.execute(query,(data[0]['channel_Name'],data[0]['comment'],data[0]['comment_author'],
@@ -230,7 +245,7 @@ def comment_info(video_ids,channel_name):
  
 channel_ids = st.text_input(':orange[CHANNEL ID]', 'Give input here ', key="unique_key_for_text_input")
 
-
+# here creating side bar section in streamlit interface 
 with st.sidebar:
     st.title(":red[YOUTUBE DATA HARVESTING AND WAREHOUSING USING SQL AND STREAMLIT]")
     st.header("Problem Statement")
@@ -241,16 +256,19 @@ with st.sidebar:
 def CHANNEL():
 
     message="This is the updated channel data "
+    # this loop helps to display our given message with equal time difference (animation)
     for word in message.split(" "):
         yield word + " "
         time.sleep(0.15)
-
+    # fetch channel info from channel table using sql comment
     mycursor.execute('select * from project.channel')
+    # fetchall function used to fetch all data from local server and stored in out variable
     out=mycursor.fetchall()
+    # here fetching columns title from the channel table
     header=[i[0] for i in mycursor.description]
     yield pd.DataFrame(out,columns=header)
 
-
+# creating side bar button 
 if st.sidebar.button("CHANNEL"):
     st.write(CHANNEL)
 
@@ -292,7 +310,7 @@ def COMMENTS():
 
 if st.sidebar.button('COMMENTS'): 
     st.write(COMMENTS)
-
+# here creating selection button with given sql questions 
 questions=st.selectbox(":orange[SELECT QUESTION]",("select option",
         "1 . What are the names of all the videos and their corresponding channels?",
         "2 . Which channels have the most number of videos, and how many videos dothey have?",
@@ -377,6 +395,7 @@ playlist_details(channel_ids)
 a=vedioIds_info(channel_ids)
 vedios_info(a[0],a[1])
 comment_info(a[0],a[1])
+# it will show our code success fully completed
 st.success('successfully inserted data into local host database!', icon="✅")
 
 
