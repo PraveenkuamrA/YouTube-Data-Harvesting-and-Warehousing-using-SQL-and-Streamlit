@@ -81,4 +81,5 @@ def channel_info(channel_id):
                             data[0]['channel_viewCount']))
     mydb.commit()
 ```
+https://github.com/PraveenkuamrA/YouTube-Data-Harvesting-and-Warehousing-using-SQL-and-Streamlit/blob/3af67bd3bba565cf0bfd55e7222b54a8548c915b/YouTube%20Data%20Harvesting%20and%20Warehousing%20using%20SQL%20and%20Streamlit.py#L20-L50
 
