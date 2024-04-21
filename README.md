@@ -29,3 +29,14 @@ import pandas as pd
 import mysql.connector
 import time
 ```
+Connect local host with compiler
+```
+mydb = mysql.connector.connect(
+ host="localhost",
+ user="root",
+ password="",
+ )
+mycursor = mydb.cursor(buffered=True)
+```
+
+
