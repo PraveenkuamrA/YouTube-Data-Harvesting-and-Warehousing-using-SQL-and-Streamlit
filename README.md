@@ -69,6 +69,7 @@ def channel_info(channel_id):
     st.write(pd.DataFrame(data))
     
     # here going to insert data into my sql channel table
+
     query = '''INSERT INTO project.channel (channel_name,channel_des,channel_uploadId,channel_sub,channel_vedioCount,
             channel_viewCount) VALUES (%s, %s, %s,%s,%s,%s)'''
     
