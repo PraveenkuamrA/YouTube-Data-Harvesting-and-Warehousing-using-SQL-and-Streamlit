@@ -29,7 +29,7 @@ import pandas as pd
 import mysql.connector
 import time
 ```
-Connect local host with compiler
+Connect local host sql with compiler
 ```
 mydb = mysql.connector.connect(
  host="localhost",
@@ -37,6 +37,13 @@ mydb = mysql.connector.connect(
  password="",
  )
 mycursor = mydb.cursor(buffered=True)
+```
+Connection with youtube api server with your api key
+```
+api_service_name = "youtube"
+api_version = "v3"
+api_key='AIzaSyB6cmqZxAgsDC4mCgfpyL6IChq_AOzvU-c'
+youtube = googleapiclient.discovery.build(api_service_name, api_version, developerKey=api_key)
 ```
 
 
