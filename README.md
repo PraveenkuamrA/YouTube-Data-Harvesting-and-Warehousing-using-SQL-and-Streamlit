@@ -5,10 +5,8 @@
  #### 2 . Ability to collect data for up to 10 different YouTube channels and store them in the data lake by clicking a button.
  #### 3 . Ability to search and retrieve data from the SQL database using different search options, including joining tables to get channel details.
 
-'''
-import streamlit as st
-import googleapiclient.discovery
-import pandas as pd
-import mysql.connector
-import time
-'''
+```
+git status
+git add
+git commit
+```
