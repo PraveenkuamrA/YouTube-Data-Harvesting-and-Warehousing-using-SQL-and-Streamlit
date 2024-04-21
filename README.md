@@ -21,7 +21,7 @@ Install pandas
 ```
 pip install pandas
 ```
-
+Import all functions
 ```
 import streamlit as st
 import googleapiclient.discovery
