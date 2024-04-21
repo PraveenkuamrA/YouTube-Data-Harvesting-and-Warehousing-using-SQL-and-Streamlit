@@ -22,27 +22,55 @@ Install pandas
 pip install pandas
 ```
 Import all functions
-```
-import streamlit as st
-import googleapiclient.discovery
-import pandas as pd
-import mysql.connector
-import time
-```
+https://github.com/PraveenkuamrA/YouTube-Data-Harvesting-and-Warehousing-using-SQL-and-Streamlit/blob/159b86bb0919c138990422ca9ba52dc2bc1a4bee/YouTube%20Data%20Harvesting%20and%20Warehousing%20using%20SQL%20and%20Streamlit.py#L1-L5
+
 Connect local host sql with compiler
-```
-mydb = mysql.connector.connect(
- host="localhost",
- user="root",
- password="",
- )
-mycursor = mydb.cursor(buffered=True)
-```
+https://github.com/PraveenkuamrA/YouTube-Data-Harvesting-and-Warehousing-using-SQL-and-Streamlit/blob/159b86bb0919c138990422ca9ba52dc2bc1a4bee/YouTube%20Data%20Harvesting%20and%20Warehousing%20using%20SQL%20and%20Streamlit.py#L7-L12
+
 Connection with youtube api server with your api key
 
 https://github.com/PraveenkuamrA/YouTube-Data-Harvesting-and-Warehousing-using-SQL-and-Streamlit/blob/3af67bd3bba565cf0bfd55e7222b54a8548c915b/YouTube%20Data%20Harvesting%20and%20Warehousing%20using%20SQL%20and%20Streamlit.py#L7-L12
 
 Fetch channel info 
 
-https://github.com/PraveenkuamrA/YouTube-Data-Harvesting-and-Warehousing-using-SQL-and-Streamlit/blob/3af67bd3bba565cf0bfd55e7222b54a8548c915b/YouTube%20Data%20Harvesting%20and%20Warehousing%20using%20SQL%20and%20Streamlit.py#L20-L50
+https://github.com/PraveenkuamrA/YouTube-Data-Harvesting-and-Warehousing-using-SQL-and-Streamlit/blob/159b86bb0919c138990422ca9ba52dc2bc1a4bee/YouTube%20Data%20Harvesting%20and%20Warehousing%20using%20SQL%20and%20Streamlit.py#L20-L54
+
+Fetch playlist info
+
+https://github.com/PraveenkuamrA/YouTube-Data-Harvesting-and-Warehousing-using-SQL-and-Streamlit/blob/159b86bb0919c138990422ca9ba52dc2bc1a4bee/YouTube%20Data%20Harvesting%20and%20Warehousing%20using%20SQL%20and%20Streamlit.py#L56-L102
+
+Fetch vedios_ID  info 
+
+https://github.com/PraveenkuamrA/YouTube-Data-Harvesting-and-Warehousing-using-SQL-and-Streamlit/blob/159b86bb0919c138990422ca9ba52dc2bc1a4bee/YouTube%20Data%20Harvesting%20and%20Warehousing%20using%20SQL%20and%20Streamlit.py#L104-L137
+
+Fetch vedios info 
+
+https://github.com/PraveenkuamrA/YouTube-Data-Harvesting-and-Warehousing-using-SQL-and-Streamlit/blob/159b86bb0919c138990422ca9ba52dc2bc1a4bee/YouTube%20Data%20Harvesting%20and%20Warehousing%20using%20SQL%20and%20Streamlit.py#L139-L197
+
+Fetch comments info 
+
+https://github.com/PraveenkuamrA/YouTube-Data-Harvesting-and-Warehousing-using-SQL-and-Streamlit/blob/159b86bb0919c138990422ca9ba52dc2bc1a4bee/YouTube%20Data%20Harvesting%20and%20Warehousing%20using%20SQL%20and%20Streamlit.py#L199-L243
+
+User INPUT Channel ID 
+https://github.com/PraveenkuamrA/YouTube-Data-Harvesting-and-Warehousing-using-SQL-and-Streamlit/blob/159b86bb0919c138990422ca9ba52dc2bc1a4bee/YouTube%20Data%20Harvesting%20and%20Warehousing%20using%20SQL%20and%20Streamlit.py#L246
+
+Creating side bar text
+
+https://github.com/PraveenkuamrA/YouTube-Data-Harvesting-and-Warehousing-using-SQL-and-Streamlit/blob/159b86bb0919c138990422ca9ba52dc2bc1a4bee/YouTube%20Data%20Harvesting%20and%20Warehousing%20using%20SQL%20and%20Streamlit.py#L248-L254
+
+Creating Updated Table view button 
+
+https://github.com/PraveenkuamrA/YouTube-Data-Harvesting-and-Warehousing-using-SQL-and-Streamlit/blob/159b86bb0919c138990422ca9ba52dc2bc1a4bee/YouTube%20Data%20Harvesting%20and%20Warehousing%20using%20SQL%20and%20Streamlit.py#L256-L312
+
+Creating selection box button with given questions 
+
+https://github.com/PraveenkuamrA/YouTube-Data-Harvesting-and-Warehousing-using-SQL-and-Streamlit/blob/159b86bb0919c138990422ca9ba52dc2bc1a4bee/YouTube%20Data%20Harvesting%20and%20Warehousing%20using%20SQL%20and%20Streamlit.py#L313-L390
+
+Function calling 
+
+https://github.com/PraveenkuamrA/YouTube-Data-Harvesting-and-Warehousing-using-SQL-and-Streamlit/blob/159b86bb0919c138990422ca9ba52dc2bc1a4bee/YouTube%20Data%20Harvesting%20and%20Warehousing%20using%20SQL%20and%20Streamlit.py#L393-L399
+
+
+
+
 
