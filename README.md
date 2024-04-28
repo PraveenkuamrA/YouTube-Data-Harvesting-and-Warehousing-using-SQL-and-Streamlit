@@ -39,11 +39,11 @@ Fetch playlist info
 
 https://github.com/PraveenkuamrA/YouTube-Data-Harvesting-and-Warehousing-using-SQL-and-Streamlit/blob/159b86bb0919c138990422ca9ba52dc2bc1a4bee/YouTube%20Data%20Harvesting%20and%20Warehousing%20using%20SQL%20and%20Streamlit.py#L56-L102
 
-Fetch vedios_ID  info 
+Fetch videos_ID  info 
 
 https://github.com/PraveenkuamrA/YouTube-Data-Harvesting-and-Warehousing-using-SQL-and-Streamlit/blob/159b86bb0919c138990422ca9ba52dc2bc1a4bee/YouTube%20Data%20Harvesting%20and%20Warehousing%20using%20SQL%20and%20Streamlit.py#L104-L137
 
-Fetch vedios info 
+Fetch videos info 
 
 https://github.com/PraveenkuamrA/YouTube-Data-Harvesting-and-Warehousing-using-SQL-and-Streamlit/blob/159b86bb0919c138990422ca9ba52dc2bc1a4bee/YouTube%20Data%20Harvesting%20and%20Warehousing%20using%20SQL%20and%20Streamlit.py#L139-L197
 
